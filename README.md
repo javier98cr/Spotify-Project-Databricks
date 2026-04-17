@@ -10,7 +10,7 @@
 Una colección curada de más de 114,000 canciones de Spotify que abarcan 125 géneros, enriquecida con características de audio extraídas de la API Web de Spotify. Cada fila representa una canción e incluye metadatos (artista, álbum, género), junto con atributos de análisis de audio (danceability, energy, tempo, etc.) y métricas de popularidad. 
 
 Los datos del archivo .csv se encuentran en un repositorio S3 bucket en AWS (s3://aws-data-lake-databricks/datasets/)
-
+Para fines de prueba, se creó dentro del mismo bucket de AWS una carpeta `/datasets-tests/`, donde el archivo .csv original se divide en múltiples subarchivos. Esto permite probar el funcionamiento de Auto Loader de forma incremental: primero se carga un archivo, se ejecuta el notebook, luego se agrega un nuevo .csv, y así sucesivamente.
 ---
 
 ## Estructura del repositorio
@@ -107,11 +107,4 @@ dim_artist          dim_genre
 ```
 ---
 
-## Primeros pasos
 
-1. Clonar este repositorio y conectarlo a tu workspace de Databricks mediante integración con Git.
-2. Copiar el archivo CSV desde Kaggle al path configurado en `configs/.env/dev.yml`.
-3. Ejecutar `notebooks/ingestion/00_setup_bronze_tables.py` para crear las tablas Delta.
-4. Ejecutar los notebooks de ingesta, transformación y análisis en orden.
-
-Consulta `docs/usage.md` para instrucciones detalladas de configuración y ejecución.
